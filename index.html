@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maksym Lazarenko - Programmatic specialist, seniour, head</title>
+    <title>Maksym Lazarenko - Programmatic Specialist, Senior, Head</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -61,18 +61,51 @@
             padding: 20px;
         }
         
+        /* Языковые переключатели */
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .lang-btn {
+            padding: 8px 20px;
+            background: rgba(30, 41, 59, 0.8);
+            color: var(--medium-text);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .lang-btn:hover {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--light-text);
+        }
+        
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
         /* Исправлено: убрали прямоугольную рамку вокруг фото */
         header {
             padding: 40px 20px 60px;
             position: relative;
             text-align: center;
-            background: transparent; /* Убрали фон */
-            border-radius: 0; /* Убрали скругления */
+            background: transparent;
+            border-radius: 0;
             margin: 20px auto 40px;
             max-width: 1000px;
-            box-shadow: none; /* Убрали тень */
-            border: none; /* Убрали границу */
-            backdrop-filter: none; /* Убрали размытие */
+            box-shadow: none;
+            border: none;
+            backdrop-filter: none;
             z-index: 1;
         }
         
@@ -568,11 +601,11 @@
         
         /* Исправлено: убрали кнопку загрузки фото */
         .photo-upload {
-            display: none; /* Скрыли блок загрузки фото */
+            display: none;
         }
         
         .upload-btn {
-            display: none; /* Скрыли кнопку */
+            display: none;
         }
         
         #file-input {
@@ -658,6 +691,11 @@
             header {
                 padding: 40px 20px 50px;
             }
+            
+            .language-switcher {
+                top: 15px;
+                right: 15px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -705,6 +743,16 @@
             main {
                 padding: 0 10px 60px;
             }
+            
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .lang-btn {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -741,6 +789,16 @@
             main {
                 padding: 0 5px 40px;
                 gap: 20px;
+            }
+            
+            .language-switcher {
+                top: 5px;
+                right: 5px;
+            }
+            
+            .lang-btn {
+                padding: 5px 12px;
+                font-size: 0.85rem;
             }
         }
         
@@ -781,6 +839,28 @@
                 padding: 0;
             }
         }
+        
+        /* Стили для элементов с атрибутами языков */
+        [data-lang] {
+            display: none;
+        }
+        
+        [data-lang="en"] {
+            display: block;
+        }
+        
+        [data-lang="ua"] {
+            display: none;
+        }
+        
+        /* Класс для активного языка */
+        .lang-active {
+            display: block !important;
+        }
+        
+        .lang-inactive {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -789,192 +869,279 @@
     <div class="floating-element"></div>
     <div class="floating-element"></div>
     
+    <!-- Кнопки переключения языка -->
+    <div class="language-switcher">
+        <button class="lang-btn active" id="lang-en">EN</button>
+        <button class="lang-btn" id="lang-ua">UA</button>
+    </div>
+    
     <div class="container">
         <header>
             <div class="photo-container">
-                <img id="profile-photo" src="2025-12-05 16.32.10.jpg" alt="Фотография" style="display: block; object-fit: cover;">
+                <img id="profile-photo" src="2025-12-05 16.32.10.jpg" alt="Photo" style="display: block; object-fit: cover;">
                 <div class="photo-placeholder" id="photo-placeholder" style="display: none;">
                     <i class="fas fa-user-tie"></i>
-                    <span>Загрузите фото</span>
+                    <span>Upload photo</span>
                 </div>
             </div>
             
             <div class="title-container">
-                <h1 class="main-title">Senior programmatic specialist</h1>
-                <div class="subtitle"> Head of Programmatic </div>
-                <p class="summary">
-                    Более 8 лет опыта в digital-индустрии с фокусом на программатик-рекламе, медиабаинге, управлении партнерскими отношениями и антифрод-стратегиях. 
-                    Специализируюсь на интеграции трафика по апи, оптимизации затрат и масштабировании оборота кампании.
+                <h1 class="main-title lang-active" data-lang="en">Programmatic specialist</h1>
+                <h1 class="main-title lang-inactive" data-lang="ua">Программатик спеціаліст</h1>
+                
+                <div class="subtitle lang-active" data-lang="en">Head of Programmatic · Senior Media Buyer · Project Manager</div>
+                <div class="subtitle lang-inactive" data-lang="ua">Head of Programmatic · Senior Media Buyer · Project Manager</div>
+                
+                <p class="summary lang-active" data-lang="en">
+                    Over 8 years of experience in the digital industry with a focus on programmatic advertising, media buying, partner relationship management and anti-fraud strategies. 
+                    I specialize in traffic integration, yield optimization and scaling advertising campaigns.
+                </p>
+                <p class="summary lang-inactive" data-lang="ua">
+                    Понад 8 років досвіду в digital-індустрії з фокусом на программатик-рекламі, медіабаїнгу, управлінні партнерськими відносинами та антифрод-стратегіях. 
+                    Спеціалізуюсь на інтеграції трафіку, оптимізації доходності та масштабуванні рекламних кампаній.
                 </p>
             </div>
             
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-value">8+</div>
-                    <div class="stat-label">Лет в digital</div>
+                    <div class="stat-label lang-active" data-lang="en">Years in digital</div>
+                    <div class="stat-label lang-inactive" data-lang="ua">Років у digital</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">6.5+</div>
-                    <div class="stat-label">Лет в программатик</div>
+                    <div class="stat-label lang-active" data-lang="en">Years in programmatic</div>
+                    <div class="stat-label lang-inactive" data-lang="ua">Років у программатик</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">5.5+</div>
-                    <div class="stat-label">Руководящий опыт</div>
+                    <div class="stat-label lang-active" data-lang="en">Management experience</div>
+                    <div class="stat-label lang-inactive" data-lang="ua">Керівний досвід</div>
                 </div>
-            </div>
-            
-            <!-- Исправлено: убрали блок загрузки фото -->
-            <div class="photo-upload" style="display: none;">
-                <label for="file-input" class="upload-btn">
-                    <i class="fas fa-upload"></i> Загрузить фото
-                </label>
-                <input type="file" id="file-input" accept="image/*">
             </div>
         </header>
         
         <main>
             <!-- EvaDav.com -->
             <section class="card">
-                <h2><i class="fas fa-briefcase"></i> Опыт работы</h2>
+                <h2 class="lang-active" data-lang="en"><i class="fas fa-briefcase"></i> Work Experience</h2>
+                <h2 class="lang-inactive" data-lang="ua"><i class="fas fa-briefcase"></i> Досвід роботи</h2>
                 
                 <div class="experience-header">
                     <div class="company-name">
                         <i class="fas fa-ad"></i>
-                        Evadav.com - Traffic Group
+                        EvaDav.com - Native Advertising Network
                     </div>
-                    <div class="company-duration">6 лет 9 месяцев</div>
+                    <div class="company-duration lang-active" data-lang="en">6 years 9 months</div>
+                    <div class="company-duration lang-inactive" data-lang="ua">6 років 9 місяців</div>
                 </div>
                 
                 <div class="position-item">
-                    <div class="position-title">Head of Programmatic</div>
+                    <div class="position-title lang-active" data-lang="en">Head of Programmatic</div>
+                    <div class="position-title lang-inactive" data-lang="ua">Head of Programmatic</div>
                     <div class="position-meta">
-                        <div class="position-type">Полная занятость</div>
-                        <div class="position-duration">Май 2020 - настоящее время · 5 лет 8 месяцев</div>
+                        <div class="position-type lang-active" data-lang="en">Full-time</div>
+                        <div class="position-type lang-inactive" data-lang="ua">Повна зайнятість</div>
+                        <div class="position-duration lang-active" data-lang="en">May 2020 - Present · 5 years 8 months</div>
+                        <div class="position-duration lang-inactive" data-lang="ua">Травень 2020 - Зараз · 5 років 8 місяців</div>
                     </div>
                     
                     <div class="responsibilities">
-                        <div class="responsibility-item">
-                            <strong>Интеграция источников трафика & Управление партнерами:</strong> 
-                            Выявление, оценка и подключение новых поставщиков трафика (ad networks, SSP) специализирующихся на push, pop-up, in-page и native рекламных форматах.
+                        <div class="responsibility-item lang-active" data-lang="en">
+                            <strong>Traffic Source Integration & Partner Management:</strong> 
+                            Identification, evaluation and integration of new traffic suppliers (ad networks, SSP) specializing in push, pop-up, in-page and native ad formats.
                         </div>
-                        <div class="responsibility-item">
-                            Контроль технических интеграций с партнерами, в основном через JSON API и протокол OpenRTB 2.5 native 1.2.
+                        <div class="responsibility-item lang-inactive" data-lang="ua">
+                            <strong>Інтеграція джерел трафіку & Управління партнерами:</strong> 
+                            Виявлення, оцінка та підключення нових постачальників трафіку (ad networks, SSP), що спеціалізуються на push, pop-up, in-page та native рекламних форматах.
                         </div>
-                        <div class="responsibility-item">
-                            Управление отношениями и предоставление круглосуточной поддержки партнерам DSP для обеспечения бесперебойного сотрудничества и решения проблем.
+                        <div class="responsibility-item lang-active" data-lang="en">
+                            Control of technical integrations with partners, mainly through JSON API and OpenRTB protocols.
                         </div>
-                        <div class="responsibility-item">
-                            <strong>Анализ трафика и антифрод:</strong> 
-                            Глубокий анализ логов запросов и ответов SSP/DSP для мониторинга качества и эффективности трафика.
+                        <div class="responsibility-item lang-inactive" data-lang="ua">
+                            Контроль технічних інтеграцій з партнерами, в основному через JSON API та протоколи OpenRTB.
                         </div>
-                        <div class="responsibility-item">
-                            Внедрение и управление внутренними и сторонними антифрод-решениями для анализа трафика.
+                        <div class="responsibility-item lang-active" data-lang="en">
+                            Relationship management and 24/7 support for DSP partners to ensure seamless collaboration and problem resolution.
                         </div>
-                        <div class="responsibility-item">
-                            Активная блокировка мошеннических источников и координация с партнерами для обеспечения соответствующих блокировок с их стороны.
+                        <div class="responsibility-item lang-inactive" data-lang="ua">
+                            Управління відносинами та надання цілодобової підтримки партнерам DSP для забезпечення безперебійної співпраці та вирішення проблем.
                         </div>
-                        <div class="responsibility-item">
-                            <strong>Стратегия биддинга & Оптимизация доходности:</strong> 
-                            Разработка и выполнение стратегий биддинга для конкретных форматов для максимизации производительности.
+                        <div class="responsibility-item lang-active" data-lang="en">
+                            <strong>Traffic Analysis & Fraud Prevention:</strong> 
+                            Deep analysis of SSP/DSP request and response logs to monitor traffic quality and effectiveness.
                         </div>
-                        <div class="responsibility-item">
-                            Создание и обслуживание сайта для партнеров evarates.online.
+                        <div class="responsibility-item lang-inactive" data-lang="ua">
+                            <strong>Аналіз трафіку & Протидія шахрайству:</strong> 
+                            Глибокий аналіз логів запитів та відповідей SSP/DSP для моніторингу якості та ефективності трафіку.
                         </div>
-                        <div class="responsibility-item">
-                            Предоставление партнерам DSP стратегических рекомендаций по источникам и уровням ставок для успеха кампаний.
+                        <div class="responsibility-item lang-active" data-lang="en">
+                            Implementation and management of internal and third-party anti-fraud solutions for traffic analysis.
                         </div>
-                        <div class="responsibility-item">
-                            Фокус на масштабировании дохода и увеличении расходов по всем партнерам SSP.
+                        <div class="responsibility-item lang-inactive" data-lang="ua">
+                            Впровадження та управління внутрішніми та сторонніми антифрод-рішеннями для аналізу трафіку.
                         </div>
-                        <div class="responsibility-item">
-                            <strong>Управление маржой & Расхождениями:</strong> 
-                            Ежедневный мониторинг и контроль прибыльности по всем аккаунтам SSP и DSP.
+                        <div class="responsibility-item lang-active" data-lang="en">
+                            Active blocking of fraudulent sources and coordination with partners to ensure appropriate blocking on their side.
                         </div>
-                        <div class="responsibility-item">
-                            Анализ и оптимизация сетевых множителей ставок для уменьшения финансовых расхождений и улучшения общей прибыльности.
+                        <div class="responsibility-item lang-inactive" data-lang="ua">
+                            Активне блокування шахрайських джерел та координація з партнерами для забезпечення відповідних блокувань з їхнього боку.
+                        </div>
+                        <div class="responsibility-item lang-active" data-lang="en">
+                            <strong>Bidding Strategy & Yield Optimization:</strong> 
+                            Development and execution of bidding strategies for specific formats to maximize performance.
+                        </div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">
+                            <strong>Стратегія бідінгу & Оптимізація доходності:</strong> 
+                            Розробка та виконання стратегій бідінгу для конкретних форматів для максимізації продуктивності.
+                        </div>
+                        <div class="responsibility-item lang-active" data-lang="en">
+                            Creation and maintenance of the partner site evarates.online.
+                        </div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">
+                            Створення та обслуговування сайту для партнерів evarates.online.
+                        </div>
+                        <div class="responsibility-item lang-active" data-lang="en">
+                            Providing DSP partners with strategic recommendations on sources and bid levels for campaign success.
+                        </div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">
+                            Надання партнерам DSP стратегічних рекомендацій щодо джерел та рівнів ставок для успіху кампаній.
+                        </div>
+                        <div class="responsibility-item lang-active" data-lang="en">
+                            Focus on scaling revenue and increasing spend across all SSP partners.
+                        </div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">
+                            Фокус на масштабуванні доходу та збільшенні витрат у всіх партнерів SSP.
+                        </div>
+                        <div class="responsibility-item lang-active" data-lang="en">
+                            <strong>Margin Management & Discrepancies:</strong> 
+                            Daily monitoring and control of profitability across all SSP and DSP accounts.
+                        </div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">
+                            <strong>Управління маржею & Розбіжностями:</strong> 
+                            Щоденний моніторинг та контроль прибутковості по всіх аккаунтах SSP та DSP.
+                        </div>
+                        <div class="responsibility-item lang-active" data-lang="en">
+                            Analysis and optimization of network bid multipliers to reduce financial discrepancies and improve overall profitability.
+                        </div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">
+                            Аналіз та оптимізація мережевих множників ставок для зменшення фінансових розбіжностей та покращення загальної прибутковості.
                         </div>
                     </div>
                 </div>
                 
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="timeline-title">Head of SSP</div>
-                        <div class="timeline-meta">Август 2019 - Май 2020 · 10 месяцев</div>
+                        <div class="timeline-title lang-active" data-lang="en">Head of SSP</div>
+                        <div class="timeline-title lang-inactive" data-lang="ua">Head of SSP</div>
+                        <div class="timeline-meta lang-active" data-lang="en">August 2019 - May 2020 · 10 months</div>
+                        <div class="timeline-meta lang-inactive" data-lang="ua">Серпень 2019 - Травень 2020 · 10 місяців</div>
                     </div>
                     
                     <div class="timeline-item">
-                        <div class="timeline-title">Head of publishers</div>
-                        <div class="timeline-meta">Май 2019 - Август 2019 · 4 месяца</div>
+                        <div class="timeline-title lang-active" data-lang="en">Head of publishers</div>
+                        <div class="timeline-title lang-inactive" data-lang="ua">Head of publishers</div>
+                        <div class="timeline-meta lang-active" data-lang="en">May 2019 - August 2019 · 4 months</div>
+                        <div class="timeline-meta lang-inactive" data-lang="ua">Травень 2019 - Серпень 2019 · 4 місяці</div>
                     </div>
                     
                     <div class="timeline-item">
-                        <div class="timeline-title">Business Development Manager</div>
-                        <div class="timeline-meta">Апрель 2019 - Май 2019 · 2 месяца</div>
+                        <div class="timeline-title lang-active" data-lang="en">Business Development Manager</div>
+                        <div class="timeline-title lang-inactive" data-lang="ua">Business Development Manager</div>
+                        <div class="timeline-meta lang-active" data-lang="en">April 2019 - May 2019 · 2 months</div>
+                        <div class="timeline-meta lang-inactive" data-lang="ua">Квітень 2019 - Травень 2019 · 2 місяці</div>
                     </div>
                 </div>
             </section>
             
-            <!-- EPOM и AppGrow -->
+            <!-- EPOM та AppGrow -->
             <section class="card">
                 <div class="experience-header">
                     <div class="company-name">
                         <i class="fas fa-chart-line"></i>
                         EPOM
                     </div>
-                    <div class="company-duration">2 года 11 месяцев</div>
+                    <div class="company-duration lang-active" data-lang="en">2 years 11 months</div>
+                    <div class="company-duration lang-inactive" data-lang="ua">2 роки 11 місяців</div>
                 </div>
                 
                 <div class="position-item">
-                    <div class="position-title">Business Development Manager</div>
+                    <div class="position-title lang-active" data-lang="en">Business Development Manager</div>
+                    <div class="position-title lang-inactive" data-lang="ua">Business Development Manager</div>
                     <div class="position-meta">
-                        <div class="position-type">Полная занятость</div>
-                        <div class="position-duration">Ноябрь 2018 - Апрель 2019 · 6 месяцев</div>
+                        <div class="position-type lang-active" data-lang="en">Full-time</div>
+                        <div class="position-type lang-inactive" data-lang="ua">Повна зайнятість</div>
+                        <div class="position-duration lang-active" data-lang="en">November 2018 - April 2019 · 6 months</div>
+                        <div class="position-duration lang-inactive" data-lang="ua">Листопад 2018 - Квітень 2019 · 6 місяців</div>
                     </div>
                     <div class="responsibilities">
-                        <div class="responsibility-item">Запуск native-кампаний с прямыми веб-сайтами.</div>
-                    </div>
-                </div>
-                
-                <div class="position-item">
-                    <div class="position-title">Senior Media Buyer</div>
-                    <div class="position-meta">
-                        <div class="position-type">Полная занятость</div>
-                        <div class="position-duration">Июнь 2018 - Ноябрь 2018 · 6 месяцев</div>
-                    </div>
-                    <div class="responsibilities">
-                        <div class="responsibility-item">Развитие успешного сотрудничества с партнерами</div>
-                        <div class="responsibility-item">Запуск native-кампаний с прямыми веб-сайтами / SSP</div>
-                        <div class="responsibility-item">Запуск видео / pop-under / push notification рекламы</div>
-                        <div class="responsibility-item">Учет существующих топовых веб-сайтов / рекламных сетей и рекламодателей - видео направление</div>
-                        <div class="responsibility-item">Поиск рекламодателей для видео направления</div>
-                        <div class="responsibility-item">Покупка трафика программно через различные RTB платформы</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Launch of native campaigns with direct websites.</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Запуск native-кампаній з прямими веб-сайтами.</div>
                     </div>
                 </div>
                 
                 <div class="position-item">
-                    <div class="position-title">Media Buyer</div>
+                    <div class="position-title lang-active" data-lang="en">Senior Media Buyer</div>
+                    <div class="position-title lang-inactive" data-lang="ua">Senior Media Buyer</div>
                     <div class="position-meta">
-                        <div class="position-type">Полная занятость</div>
-                        <div class="position-duration">Ноябрь 2016 - Май 2018 · 1 год 7 месяцев</div>
+                        <div class="position-type lang-active" data-lang="en">Full-time</div>
+                        <div class="position-type lang-inactive" data-lang="ua">Повна зайнятість</div>
+                        <div class="position-duration lang-active" data-lang="en">June 2018 - November 2018 · 6 months</div>
+                        <div class="position-duration lang-inactive" data-lang="ua">Червень 2018 - Листопад 2018 · 6 місяців</div>
                     </div>
                     <div class="responsibilities">
-                        <div class="responsibility-item">Запуск видео-кампаний с прямыми веб-сайтами / рекламными сетями</div>
-                        <div class="responsibility-item">Постоянный анализ кампаний рекламодателей для команды медиабаеров</div>
-                        <div class="responsibility-item">Ежедневная оптимизация кампаний</div>
-                        <div class="responsibility-item">Покупка трафика с DSP платформ</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Development of successful partnerships</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Розвиток успішної співпраці з партнерами</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Launch of native campaigns with direct websites / SSP</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Запуск native-кампаній з прямими веб-сайтами / SSP</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Launch of video / pop-under / push notification advertising</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Запуск відео / pop-under / push notification реклами</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Accounting of existing top websites / ad networks and advertisers - video direction</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Облік існуючих топових веб-сайтів / рекламних мереж та рекламодавців - відео напрямок</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Search for advertisers for video direction</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Пошук рекламодавців для відео напрямку</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Programmatic traffic buying through various RTB platforms</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Покупка трафіку програмно через різні RTB платформи</div>
                     </div>
                 </div>
                 
                 <div class="position-item">
-                    <div class="position-title">Junior Media Buyer</div>
+                    <div class="position-title lang-active" data-lang="en">Media Buyer</div>
+                    <div class="position-title lang-inactive" data-lang="ua">Media Buyer</div>
                     <div class="position-meta">
-                        <div class="position-type">Полная занятость</div>
-                        <div class="position-duration">Июнь 2016 - Октябрь 2016 · 5 месяцев</div>
+                        <div class="position-type lang-active" data-lang="en">Full-time</div>
+                        <div class="position-type lang-inactive" data-lang="ua">Повна зайнятість</div>
+                        <div class="position-duration lang-active" data-lang="en">November 2016 - May 2018 · 1 year 7 months</div>
+                        <div class="position-duration lang-inactive" data-lang="ua">Листопад 2016 - Травень 2018 · 1 рік 7 місяців</div>
                     </div>
                     <div class="responsibilities">
-                        <div class="responsibility-item">Поиск веб-сайтов для запуска видео рекламных юнитов для долгосрочного сотрудничества</div>
-                        <div class="responsibility-item">Генерация лидов</div>
-                        <div class="responsibility-item">Работа с CPM кампаниями на десктопном и мобильном трафике</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Launch of video campaigns with direct websites / ad networks</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Запуск відео-кампаній з прямими веб-сайтами / рекламними мережами</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Constant analysis of advertiser campaigns for the media buying team</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Постійний аналіз кампаній рекламодавців для команди медіабаєрів</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Daily campaign optimization</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Щоденна оптимізація кампаній</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Traffic buying from DSP platforms</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Покупка трафіку з DSP платформ</div>
+                    </div>
+                </div>
+                
+                <div class="position-item">
+                    <div class="position-title lang-active" data-lang="en">Junior Media Buyer</div>
+                    <div class="position-title lang-inactive" data-lang="ua">Junior Media Buyer</div>
+                    <div class="position-meta">
+                        <div class="position-type lang-active" data-lang="en">Full-time</div>
+                        <div class="position-type lang-inactive" data-lang="ua">Повна зайнятість</div>
+                        <div class="position-duration lang-active" data-lang="en">June 2016 - October 2016 · 5 months</div>
+                        <div class="position-duration lang-inactive" data-lang="ua">Червень 2016 - Жовтень 2016 · 5 місяців</div>
+                    </div>
+                    <div class="responsibilities">
+                        <div class="responsibility-item lang-active" data-lang="en">Search for websites to launch video ad units for long-term cooperation</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Пошук веб-сайтів для запуску відео рекламних юнітів для довгострокової співпраці</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Lead generation</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Генерація лідів</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Work with CPM campaigns on desktop and mobile traffic</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Робота з CPM кампаніями на десктопному та мобільному трафіку</div>
                     </div>
                 </div>
                 
@@ -983,18 +1150,24 @@
                         <i class="fas fa-mobile-alt"></i>
                         AppGrow
                     </div>
-                    <div class="company-duration">3 месяца</div>
+                    <div class="company-duration lang-active" data-lang="en">3 months</div>
+                    <div class="company-duration lang-inactive" data-lang="ua">3 місяці</div>
                 </div>
                 
                 <div class="position-item">
-                    <div class="position-title">Business Development Manager</div>
+                    <div class="position-title lang-active" data-lang="en">Business Development Manager</div>
+                    <div class="position-title lang-inactive" data-lang="ua">Business Development Manager</div>
                     <div class="position-meta">
-                        <div class="position-type">Полная занятость</div>
-                        <div class="position-duration">Февраль 2019 - Апрель 2019 · 3 месяца</div>
+                        <div class="position-type lang-active" data-lang="en">Full-time</div>
+                        <div class="position-type lang-inactive" data-lang="ua">Повна зайнятість</div>
+                        <div class="position-duration lang-active" data-lang="en">February 2019 - April 2019 · 3 months</div>
+                        <div class="position-duration lang-inactive" data-lang="ua">Лютий 2019 - Квітень 2019 · 3 місяці</div>
                     </div>
                     <div class="responsibilities">
-                        <div class="responsibility-item">Помощь компаниям в получении дополнительного дохода от их мобильных приложений</div>
-                        <div class="responsibility-item">Работа с мобильными приложениями для монетизации</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Assisting companies in obtaining additional income from their mobile applications</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Допомога компаніям у отриманні додаткового доходу від їх мобільних додатків</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Working with mobile applications for monetization</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Робота з мобільними додатками для монетизації</div>
                     </div>
                 </div>
             </section>
@@ -1006,79 +1179,110 @@
                         <i class="fas fa-project-diagram"></i>
                         Nova Poshta
                     </div>
-                    <div class="company-duration">2 года 7 месяцев</div>
+                    <div class="company-duration lang-active" data-lang="en">2 years 7 months</div>
+                    <div class="company-duration lang-inactive" data-lang="ua">2 роки 7 місяців</div>
                 </div>
                 
                 <div class="position-item">
-                    <div class="position-title">Project Manager Customer Service</div>
+                    <div class="position-title lang-active" data-lang="en">Project Manager Customer Service</div>
+                    <div class="position-title lang-inactive" data-lang="ua">Project Manager Customer Service</div>
                     <div class="position-meta">
-                        <div class="position-type">Полная занятость</div>
-                        <div class="position-duration">Апрель 2015 - Май 2016 · 1 год 2 месяца · Киев</div>
+                        <div class="position-type lang-active" data-lang="en">Full-time</div>
+                        <div class="position-type lang-inactive" data-lang="ua">Повна зайнятість</div>
+                        <div class="position-duration lang-active" data-lang="en">April 2015 - May 2016 · 1 year 2 months · Kyiv</div>
+                        <div class="position-duration lang-inactive" data-lang="ua">Квітень 2015 - Травень 2016 · 1 рік 2 місяці · Київ</div>
                     </div>
                     <div class="responsibilities">
-                        <div class="responsibility-item">Создание еженедельных презентаций для CEO по ключевым показателям сервиса (анализ, динамика, прогнозы, выводы)</div>
-                        <div class="responsibility-item">Анализ поступающих жалоб, разработка планов по их уменьшению</div>
-                        <div class="responsibility-item">Выявление причин возникновения жалоб и их своевременное устранение</div>
-                        <div class="responsibility-item">Участие в создании ежедневного отчета для почтовых отделений о клиентах, которые не были проинформированы</div>
-                        <div class="responsibility-item">Разработка новой системы критериев оценки для сотрудников</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Creation of weekly presentations for the CEO on key service indicators (analysis, dynamics, forecasts, conclusions)</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Створення щотижневих презентацій для CEO за ключовими показниками сервісу (аналіз, динаміка, прогнози, висновки)</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Analysis of incoming complaints, development of plans to reduce them</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Аналіз надходжень скарг, розробка планів щодо їх зменшення</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Identification of the causes of complaints and their timely elimination</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Виявлення причин виникнення скарг та їх своєчасне усунення</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Participation in the creation of a daily report for post offices about customers who were not informed</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Участь у створенні щоденного звіту для поштових відділень про клієнтів, які не були проінформовані</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Development of a new system of evaluation criteria for employees</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Розробка нової системи критеріїв оцінки для співробітників</div>
                     </div>
                 </div>
                 
                 <div class="position-item">
-                    <div class="position-title">Audit Manager Customer Service</div>
+                    <div class="position-title lang-active" data-lang="en">Audit Manager Customer Service</div>
+                    <div class="position-title lang-inactive" data-lang="ua">Audit Manager Customer Service</div>
                     <div class="position-meta">
-                        <div class="position-type">Полная занятость</div>
-                        <div class="position-duration">Ноябрь 2013 - Март 2015 · 1 год 5 месяцев</div>
+                        <div class="position-type lang-active" data-lang="en">Full-time</div>
+                        <div class="position-type lang-inactive" data-lang="ua">Повна зайнятість</div>
+                        <div class="position-duration lang-active" data-lang="en">November 2013 - March 2015 · 1 year 5 months</div>
+                        <div class="position-duration lang-inactive" data-lang="ua">Листопад 2013 - Березень 2015 · 1 рік 5 місяців</div>
                     </div>
                     <div class="responsibilities">
-                        <div class="responsibility-item">Рекрутинг аудиторов</div>
-                        <div class="responsibility-item">Проведение интервью и обучение</div>
-                        <div class="responsibility-item">Создание и отправка отчетов региональным дирекциям</div>
-                        <div class="responsibility-item">Решение возражений от директоров филиалов</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Recruitment of auditors</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Рекрутинг аудиторів</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Conducting interviews and training</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Проведення інтерв'ю та навчання</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Creation and sending of reports to regional directorates</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Створення та відправлення звітів регіональним дирекціям</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Resolution of objections from branch directors</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Вирішення заперечень від директорів філій</div>
                     </div>
                 </div>
             </section>
             
-            <!-- Coca-Cola и Philip Morris -->
+            <!-- Coca-Cola та Philip Morris -->
             <section class="card">
-                <h2><i class="fas fa-history"></i> Ранний опыт</h2>
+                <h2 class="lang-active" data-lang="en"><i class="fas fa-history"></i> Early Experience</h2>
+                <h2 class="lang-inactive" data-lang="ua"><i class="fas fa-history"></i> Ранній досвід</h2>
                 
                 <div class="position-item">
-                    <div class="position-title">Sales Representative</div>
+                    <div class="position-title lang-active" data-lang="en">Sales Representative</div>
+                    <div class="position-title lang-inactive" data-lang="ua">Sales Representative</div>
                     <div class="position-meta">
                         <div class="company-name" style="font-size: 1.1rem; margin-bottom: 8px;">
                             <i class="fas fa-cookie-bite"></i>
                             Coca-Cola Beverages Ukraine LTD
                         </div>
-                        <div class="position-duration">Октябрь 2012 - Октябрь 2013 · 1 год 1 месяц · Мариуполь</div>
+                        <div class="position-duration lang-active" data-lang="en">October 2012 - October 2013 · 1 year 1 month · Mariupol</div>
+                        <div class="position-duration lang-inactive" data-lang="ua">Жовтень 2012 - Жовтень 2013 · 1 рік 1 місяць · Маріуполь</div>
                     </div>
                     <div class="responsibilities">
-                        <div class="responsibility-item">Контроль розничных точек согласно маршруту</div>
-                        <div class="responsibility-item">Развитие и активация новых розничных точек</div>
-                        <div class="responsibility-item">Контроль времени доставки товаров</div>
-                        <div class="responsibility-item">Контроль остатков продукции и срока годности</div>
-                        <div class="responsibility-item">Установка дополнительного торгового оборудования</div>
-                        <div class="responsibility-item">Мерчандайзинг</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Control of retail outlets according to the route</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Контроль роздрібних точок згідно маршруту</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Development and activation of new retail outlets</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Розвиток та активація нових роздрібних точок</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Control of delivery time of goods</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Контроль часу доставки товарів</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Control of product balances and shelf life</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Контроль залишків продукції та терміну придатності</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Installation of additional trading equipment</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Встановлення додаткового торгового обладнання</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Merchandising</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Мерчандайзинг</div>
                     </div>
                 </div>
                 
                 <div class="position-item">
-                    <div class="position-title">Sales Representative</div>
+                    <div class="position-title lang-active" data-lang="en">Sales Representative</div>
+                    <div class="position-title lang-inactive" data-lang="ua">Sales Representative</div>
                     <div class="position-meta">
                         <div class="company-name" style="font-size: 1.1rem; margin-bottom: 8px;">
                             <i class="fas fa-smoking"></i>
                             Philip Morris International
                         </div>
-                        <div class="position-duration">Июнь 2012 - Август 2012 · 3 месяца · Марьино</div>
+                        <div class="position-duration lang-active" data-lang="en">June 2012 - August 2012 · 3 months · Mar'ino</div>
+                        <div class="position-duration lang-inactive" data-lang="ua">Червень 2012 - Серпень 2012 · 3 місяці · Мар'їно</div>
                     </div>
                     <div class="responsibilities">
-                        <div class="responsibility-item">Работа с существующей клиентской базой</div>
-                        <div class="responsibility-item">Прямые продажи</div>
-                        <div class="responsibility-item">Контроль наличия товара в магазинах</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Working with an existing client base</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Робота з існуючою клієнтською базою</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Direct sales</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Прямі продажі</div>
+                        <div class="responsibility-item lang-active" data-lang="en">Control of product availability in stores</div>
+                        <div class="responsibility-item lang-inactive" data-lang="ua">Контроль наявності товару в магазинах</div>
                     </div>
                 </div>
                 
-                <h2 style="margin-top: 40px;"><i class="fas fa-tools"></i> Ключевые навыки</h2>
+                <h2 style="margin-top: 40px;" class="lang-active" data-lang="en"><i class="fas fa-tools"></i> Key Skills</h2>
+                <h2 style="margin-top: 40px;" class="lang-inactive" data-lang="ua"><i class="fas fa-tools"></i> Ключові навички</h2>
                 
                 <div class="skills-container">
                     <div class="skill-tag highlight">Programmatic Advertising</div>
@@ -1106,7 +1310,9 @@
         
         <footer>
             <a href="https://www.linkedin.com/in/max-lazarenko-a85061b9/details/experience/" class="linkedin-btn" target="_blank">
-                <i class="fab fa-linkedin"></i> Подробнее в LinkedIn
+                <i class="fab fa-linkedin"></i> 
+                <span class="lang-active" data-lang="en">More details on LinkedIn</span>
+                <span class="lang-inactive" data-lang="ua">Детальніше в LinkedIn</span>
             </a>
             <p style="margin-top: 25px; font-size: 0.9rem; color: #94a3b8;">
             </p>
@@ -1115,6 +1321,57 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Устанавливаем английский язык по умолчанию
+            const defaultLang = 'en';
+            let currentLang = localStorage.getItem('selectedLang') || defaultLang;
+            
+            // Инициализация языка
+            function initLanguage() {
+                console.log('Current language:', currentLang);
+                
+                // Устанавливаем активную кнопку
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    if (btn.id === `lang-${currentLang}`) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                // Показываем элементы на выбранном языке
+                document.querySelectorAll(`[data-lang="${currentLang}"]`).forEach(el => {
+                    el.classList.remove('lang-inactive');
+                    el.classList.add('lang-active');
+                });
+                
+                // Скрываем элементы других языков
+                document.querySelectorAll('[data-lang]').forEach(el => {
+                    if (el.dataset.lang !== currentLang) {
+                        el.classList.remove('lang-active');
+                        el.classList.add('lang-inactive');
+                    }
+                });
+                
+                // Обновляем атрибут lang у html
+                document.documentElement.lang = currentLang;
+            }
+            
+            // Инициализируем язык при загрузке
+            initLanguage();
+            
+            // Обработчики для кнопок переключения языка
+            document.getElementById('lang-en').addEventListener('click', function() {
+                currentLang = 'en';
+                localStorage.setItem('selectedLang', currentLang);
+                initLanguage();
+            });
+            
+            document.getElementById('lang-ua').addEventListener('click', function() {
+                currentLang = 'ua';
+                localStorage.setItem('selectedLang', currentLang);
+                initLanguage();
+            });
+            
             // Анимация статистики
             const statValues = document.querySelectorAll('.stat-value');
             statValues.forEach(stat => {
@@ -1172,13 +1429,14 @@
             });
             
             // Плавное появление шапки
-            document.querySelector('header').style.opacity = '0';
-            document.querySelector('header').style.transform = 'translateY(20px)';
-            document.querySelector('header').style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            const header = document.querySelector('header');
+            header.style.opacity = '0';
+            header.style.transform = 'translateY(20px)';
+            header.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             
             setTimeout(() => {
-                document.querySelector('header').style.opacity = '1';
-                document.querySelector('header').style.transform = 'translateY(0)';
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
             }, 300);
             
             // Эффект свечения при наведении на навыки
