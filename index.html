@@ -61,41 +61,36 @@
             padding: 20px;
         }
         
-        /* Шапка с фотографией */
+        /* Исправлено: убрали прямоугольную рамку вокруг фото */
         header {
             padding: 40px 20px 60px;
             position: relative;
             text-align: center;
-            background: var(--header-bg);
-            border-radius: 20px;
+            background: transparent; /* Убрали фон */
+            border-radius: 0; /* Убрали скругления */
             margin: 20px auto 40px;
             max-width: 1000px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border);
-            backdrop-filter: blur(10px);
+            box-shadow: none; /* Убрали тень */
+            border: none; /* Убрали границу */
+            backdrop-filter: none; /* Убрали размытие */
             z-index: 1;
         }
         
-.photo-container {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 40px;
-    box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.4),
-        inset 0 0 20px rgba(255, 255, 255, 0.1);
-    position: relative;
-    background: transparent; /* Убрали фон */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-        
-.photo-container::before {
-    display: none; /* Полностью скрываем градиентную рамку */
-}
+        .photo-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 40px;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
         
         .photo-container::after {
             content: '';
@@ -106,12 +101,12 @@
             opacity: 0.3;
         }
         
-.photo-container:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 
-        0 20px 50px rgba(0, 0, 0, 0.5),
-        0 0 30px rgba(99, 102, 241, 0.3); /* Убрали 0 0 0 5px... */
-}
+        .photo-container:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(99, 102, 241, 0.3);
+        }
         
         .photo-placeholder {
             width: 100%;
@@ -571,51 +566,13 @@
             font-size: 1.3rem;
         }
         
+        /* Исправлено: убрали кнопку загрузки фото */
         .photo-upload {
-            margin-top: 20px;
-            text-align: center;
+            display: none; /* Скрыли блок загрузки фото */
         }
         
         .upload-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: rgba(99, 102, 241, 0.15);
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .upload-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-        
-        .upload-btn:hover::before {
-            left: 100%;
-        }
-        
-        .upload-btn:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 
-                0 10px 30px rgba(99, 102, 241, 0.3),
-                0 0 20px rgba(99, 102, 241, 0.2);
+            display: none; /* Скрыли кнопку */
         }
         
         #file-input {
@@ -739,6 +696,15 @@
                 margin: 10px auto 30px;
                 padding: 30px 15px 40px;
             }
+            
+            /* Исправлено: добавляем отступы для мобильных устройств */
+            .container {
+                padding: 10px;
+            }
+            
+            main {
+                padding: 0 10px 60px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -756,7 +722,7 @@
             }
             
             .card {
-                padding: 24px 20px;
+                padding: 24px 15px;
             }
             
             h2 {
@@ -764,7 +730,17 @@
             }
             
             .stat-item {
-                min-width: 100%;
+                min-width: calc(50% - 15px);
+            }
+            
+            /* Исправлено: улучшаем отступы для очень маленьких экранов */
+            .container {
+                padding: 5px;
+            }
+            
+            main {
+                padding: 0 5px 40px;
+                gap: 20px;
             }
         }
         
@@ -798,6 +774,13 @@
         .glow-text {
             text-shadow: 0 0 10px currentColor;
         }
+        
+        /* Исправлено: добавляем базовые отступы для мобильных */
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -808,14 +791,12 @@
     
     <div class="container">
         <header>
-            <img id="profile-photo" src="2025-12-05 16.32.10.jpg" alt="Фотография">
-<div class="photo-container">
-    <img id="profile-photo" src="2025-12-05 16.32.10.jpg" alt="Фотография" style="display: block; object-fit: cover;">
-    <div class="photo-placeholder" id="photo-placeholder" style="display: none;">
-        <i class="fas fa-user-tie"></i>
-        <span>Загрузите фото</span>
-    </div>
-</div>
+            <div class="photo-container">
+                <img id="profile-photo" src="2025-12-05 16.32.10.jpg" alt="Фотография" style="display: block; object-fit: cover;">
+                <div class="photo-placeholder" id="photo-placeholder" style="display: none;">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Загрузите фото</span>
+                </div>
             </div>
             
             <div class="title-container">
@@ -842,7 +823,8 @@
                 </div>
             </div>
             
-            <div class="photo-upload">
+            <!-- Исправлено: убрали блок загрузки фото -->
+            <div class="photo-upload" style="display: none;">
                 <label for="file-input" class="upload-btn">
                     <i class="fas fa-upload"></i> Загрузить фото
                 </label>
@@ -1155,31 +1137,12 @@
                 }, 16);
             });
             
-            // Загрузка фотографии
-            const fileInput = document.getElementById('file-input');
-            const profilePhoto = document.getElementById('profile-photo');
-            const photoPlaceholder = document.getElementById('photo-placeholder');
-            
-            fileInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    
-                    reader.onload = function(e) {
-                        profilePhoto.src = e.target.result;
-                        profilePhoto.style.display = 'block';
-                        photoPlaceholder.style.display = 'none';
-                        
-                        localStorage.setItem('profilePhoto', e.target.result);
-                    };
-                    
-                    reader.readAsDataURL(file);
-                }
-            });
-            
             // Проверяем, есть ли сохраненное фото в localStorage
             const savedPhoto = localStorage.getItem('profilePhoto');
             if (savedPhoto) {
+                const profilePhoto = document.getElementById('profile-photo');
+                const photoPlaceholder = document.getElementById('photo-placeholder');
+                
                 profilePhoto.src = savedPhoto;
                 profilePhoto.style.display = 'block';
                 photoPlaceholder.style.display = 'none';
