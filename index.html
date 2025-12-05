@@ -76,34 +76,26 @@
             z-index: 1;
         }
         
-        .photo-container {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 40px;
-            box-shadow: 
-                0 15px 35px rgba(0, 0, 0, 0.4),
-                0 0 0 5px rgba(99, 102, 241, 0.3),
-                inset 0 0 20px rgba(255, 255, 255, 0.1);
-            position: relative;
-            background: linear-gradient(135deg, #1e293b 0%, #2d3748 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+.photo-container {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 40px;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    position: relative;
+    background: transparent; /* Убрали фон */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
         
-        .photo-container::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary), var(--accent), var(--secondary));
-            z-index: -1;
-            opacity: 0.7;
-            filter: blur(10px);
-        }
+.photo-container::before {
+    display: none; /* Полностью скрываем градиентную рамку */
+}
         
         .photo-container::after {
             content: '';
@@ -114,13 +106,12 @@
             opacity: 0.3;
         }
         
-        .photo-container:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 
-                0 20px 50px rgba(0, 0, 0, 0.5),
-                0 0 0 5px rgba(99, 102, 241, 0.5),
-                0 0 30px rgba(99, 102, 241, 0.3);
-        }
+.photo-container:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(99, 102, 241, 0.3); /* Убрали 0 0 0 5px... */
+}
         
         .photo-placeholder {
             width: 100%;
