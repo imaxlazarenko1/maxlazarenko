@@ -598,7 +598,66 @@
         .linkedin-btn i {
             font-size: 1.3rem;
         }
-        
+
+        .footer-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.linkedin-btn, .telegram-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    min-width: 200px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.linkedin-btn {
+    background: linear-gradient(135deg, #0077B5, #0A66C2);
+    color: white;
+    border: 2px solid #0077B5;
+}
+
+.telegram-btn {
+    background: linear-gradient(135deg, #2AABEE, #229ED9);
+    color: white;
+    border: 2px solid #2AABEE;
+}
+
+.linkedin-btn:hover {
+    background: linear-gradient(135deg, #006699, #005582);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 119, 181, 0.25);
+}
+
+.telegram-btn:hover {
+    background: linear-gradient(135deg, #1E96D3, #1A8AC9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(42, 171, 238, 0.25);
+}
+
+.linkedin-btn i, .telegram-btn i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.contact-info {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.lang-inactive {
+    display: none;
+}
         /* Исправлено: убрали кнопку загрузки фото */
         .photo-upload {
             display: none;
