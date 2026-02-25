@@ -23,6 +23,12 @@
             --shadow: rgba(0, 0, 0, 0.25);
             --success: #10b981;
             --warning: #f59e0b;
+            --email: #ea4335;
+            --email-dark: #c5221f;
+            --linkedin: #0a66c2;
+            --linkedin-dark: #004182;
+            --telegram: #2AABEE;
+            --telegram-dark: #229ED9;
         }
         
         * {
@@ -95,7 +101,6 @@
             border-color: var(--primary);
         }
         
-        /* Исправлено: убрали прямоугольную рамку вокруг фото */
         header {
             padding: 40px 20px 60px;
             position: relative;
@@ -555,7 +560,7 @@
             backdrop-filter: blur(5px);
         }
         
-        /* Исправленные стили для кнопок в футере */
+        /* Стили для кнопок в футере */
         .footer-buttons {
             display: flex;
             justify-content: center;
@@ -564,7 +569,8 @@
             margin-bottom: 25px;
         }
 
-        .linkedin-btn, .telegram-btn {
+        /* Общие стили для всех кнопок */
+        .email-btn, .linkedin-btn, .telegram-btn {
             display: inline-flex;
             align-items: center;
             gap: 12px;
@@ -583,15 +589,8 @@
             justify-content: center;
         }
 
-        .linkedin-btn {
-            background: linear-gradient(135deg, #0a66c2, #004182);
-        }
-
-        .telegram-btn {
-            background: linear-gradient(135deg, #2AABEE, #229ED9);
-        }
-
-        .linkedin-btn::before, .telegram-btn::before {
+        /* Эффект свечения для всех кнопок */
+        .email-btn::before, .linkedin-btn::before, .telegram-btn::before {
             content: '';
             position: absolute;
             top: 0;
@@ -602,12 +601,31 @@
             transition: left 0.6s ease;
         }
 
-        .linkedin-btn:hover::before, .telegram-btn:hover::before {
+        .email-btn:hover::before, .linkedin-btn:hover::before, .telegram-btn:hover::before {
             left: 100%;
         }
 
-        .linkedin-btn:hover, .telegram-btn:hover {
+        .email-btn:hover, .linkedin-btn:hover, .telegram-btn:hover {
             transform: translateY(-5px);
+        }
+
+        /* Индивидуальные цвета для каждой кнопки */
+        .email-btn {
+            background: linear-gradient(135deg, var(--email), var(--email-dark));
+        }
+
+        .linkedin-btn {
+            background: linear-gradient(135deg, var(--linkedin), var(--linkedin-dark));
+        }
+
+        .telegram-btn {
+            background: linear-gradient(135deg, var(--telegram), var(--telegram-dark));
+        }
+
+        .email-btn:hover {
+            box-shadow: 
+                0 12px 35px rgba(234, 67, 53, 0.4),
+                0 0 20px rgba(234, 67, 53, 0.3);
         }
 
         .linkedin-btn:hover {
@@ -622,7 +640,7 @@
                 0 0 20px rgba(42, 171, 238, 0.3);
         }
 
-        .linkedin-btn i, .telegram-btn i {
+        .email-btn i, .linkedin-btn i, .telegram-btn i {
             font-size: 1.3rem;
         }
 
@@ -632,7 +650,6 @@
             color: var(--medium-text);
         }
         
-        /* Исправлено: убрали кнопку загрузки фото */
         .photo-upload {
             display: none;
         }
@@ -768,7 +785,6 @@
                 padding: 30px 15px 40px;
             }
             
-            /* Исправлено: добавляем отступы для мобильных устройств */
             .container {
                 padding: 10px;
             }
@@ -794,7 +810,7 @@
                 gap: 15px;
             }
             
-            .linkedin-btn, .telegram-btn {
+            .email-btn, .linkedin-btn, .telegram-btn {
                 min-width: 280px;
                 width: 100%;
                 max-width: 280px;
@@ -827,7 +843,6 @@
                 min-width: calc(50% - 15px);
             }
             
-            /* Исправлено: улучшаем отступы для очень маленьких экранов */
             .container {
                 padding: 5px;
             }
@@ -847,7 +862,7 @@
                 font-size: 0.85rem;
             }
             
-            .linkedin-btn, .telegram-btn {
+            .email-btn, .linkedin-btn, .telegram-btn {
                 min-width: 250px;
                 padding: 12px 20px;
                 font-size: 0.95rem;
@@ -883,13 +898,6 @@
         /* Эффект свечения для заголовков */
         .glow-text {
             text-shadow: 0 0 10px currentColor;
-        }
-        
-        /* Исправлено: добавляем базовые отступы для мобильных */
-        @media (max-width: 768px) {
-            body {
-                padding: 0;
-            }
         }
         
         /* Стили для элементов с атрибутами языков */
@@ -944,19 +952,19 @@
                 <div class="subtitle lang-active" data-lang="en">Head of RTB, Head of sales, Senior SSP/DSP manager</div>
                 <div class="subtitle lang-inactive" data-lang="ua">Head of RTB, Head of sales, Senior SSP/DSP manager</div>
                 
-            <!-- Англійська версія - показує тільки перші 2 абзаци -->
-<div class="summary lang-active" data-lang="en">
-    <p>Over 9 years of experience in digital marketing with a focus on programmatic advertising, media buying and partner relationship management.</p>
-    <p>I specialize in end-to-end programmatic monetization, from implementing RTB technology integrations (SSP/DSP) to driving continuous yield optimization.</p>
-    <p>My focus is on leveraging data and strategic partnerships to scale company profit and operational efficiency.</p>
-</div>
+                <!-- Англійська версія - показує тільки перші 2 абзаци -->
+                <div class="summary lang-active" data-lang="en">
+                    <p>Over 9 years of experience in digital marketing with a focus on programmatic advertising, media buying and partner relationship management.</p>
+                    <p>I specialize in end-to-end programmatic monetization, from implementing RTB technology integrations (SSP/DSP) to driving continuous yield optimization.</p>
+                    <p>My focus is on leveraging data and strategic partnerships to scale company profit and operational efficiency.</p>
+                </div>
 
-<!-- Українська версія - показує всі 3 абзаци -->
-<div class="summary lang-inactive" data-lang="ua">
-    <p>Понад 9 років досвіду в цифровому маркетингу з акцентом на програмну рекламу, медіабаїнг та управління партнерськими відносинами.</p>
-    <p>Я спеціалізуюся на комплексній програмній монетизації, від впровадження RTB-інтеграцій (SSP/DSP) до забезпечення постійної оптимізації прибутковості.</p>
-    <p>Я зосереджуюсь на використанні даних стратегічних партнерств для масштабування прибутку компанії та операційної ефективності.</p>
-</div>
+                <!-- Українська версія - показує всі 3 абзаци -->
+                <div class="summary lang-inactive" data-lang="ua">
+                    <p>Понад 9 років досвіду в цифровому маркетингу з акцентом на програмну рекламу, медіабаїнг та управління партнерськими відносинами.</p>
+                    <p>Я спеціалізуюся на комплексній програмній монетизації, від впровадження RTB-інтеграцій (SSP/DSP) до забезпечення постійної оптимізації прибутковості.</p>
+                    <p>Я зосереджуюсь на використанні даних стратегічних партнерств для масштабування прибутку компанії та операційної ефективності.</p>
+                </div>
             </div>
             
             <div class="stats">
@@ -1366,28 +1374,31 @@
         </main>
         
         <footer>
-    <div class="footer-content">
-        <!-- Email поле -->
-        <div class="footer-email">
-            <i class="far fa-envelope"></i>
-            <a href="mailto:imaxlazarenko@gmail.com">imaxlazarenko@gmail.com</a>
-        </div>
-        
-        <div class="footer-buttons">
-            <a href="https://www.linkedin.com/in/max-lazarenko-a85061b9/" class="linkedin-btn" target="_blank">
-                <i class="fab fa-linkedin"></i> 
-                <span class="lang-active" data-lang="en">More details on LinkedIn</span>
-                <span class="lang-inactive" data-lang="ua">Детальніше в LinkedIn</span>
-            </a>
-            
-            <a href="https://t.me/LMax455" class="telegram-btn" target="_blank">
-                <i class="fab fa-telegram-plane"></i>
-                <span class="lang-active" data-lang="en">Message on Telegram</span>
-                <span class="lang-inactive" data-lang="ua">Написати в Telegram</span>
-            </a>
-        </div>
-    </div>
-</footer>
+            <div class="footer-content">
+                <div class="footer-buttons">
+                    <!-- Email кнопка -->
+                    <a href="mailto:imaxlazarenko@gmail.com" class="email-btn" target="_blank">
+                        <i class="far fa-envelope"></i>
+                        <span class="lang-active" data-lang="en">Send an e-mail</span>
+                        <span class="lang-inactive" data-lang="ua">Написати листа</span>
+                    </a>
+                    
+                    <!-- LinkedIn кнопка -->
+                    <a href="https://www.linkedin.com/in/max-lazarenko-a85061b9/" class="linkedin-btn" target="_blank">
+                        <i class="fab fa-linkedin"></i> 
+                        <span class="lang-active" data-lang="en">More details on LinkedIn</span>
+                        <span class="lang-inactive" data-lang="ua">Детальніше в LinkedIn</span>
+                    </a>
+                    
+                    <!-- Telegram кнопка -->
+                    <a href="https://t.me/LMax455" class="telegram-btn" target="_blank">
+                        <i class="fab fa-telegram-plane"></i>
+                        <span class="lang-active" data-lang="en">Message on Telegram</span>
+                        <span class="lang-inactive" data-lang="ua">Написати в Telegram</span>
+                    </a>
+                </div>
+            </div>
+        </footer>
     </div>
     
     <script>
